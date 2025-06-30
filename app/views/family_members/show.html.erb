@@ -1,10 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+  <div class="card p-4 shadow" style="background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(5px); border-radius: 15px; max-width: 500px; width: 100%;">
+    <h2 class="text-center mb-4"><%= @family_member.first_name %> <%= @family_member.last_name %></h2>
 
-<%= render @family_member %>
+    <p><strong>Relationship:</strong> <%= @family_member.relationship_to_user %></p>
+    <p><strong>Date of Birth:</strong> <%= @family_member.dob %></p>
 
-<div>
-  <%= link_to "Edit this family member", edit_family_member_path(@family_member) %> |
-  <%= link_to "Back to family members", family_members_path %>
-
-  <%= button_to "Destroy this family member", @family_member, method: :delete %>
+    <div class="d-flex justify-content-between mt-4">
+      <%= link_to 'Edit', edit_family_member_path(@family_member), class: 'btn btn-outline-secondary btn-lg' %>
+      <%= link_to 'Back to Family Members', family_members_path, class: 'btn btn-outline-primary btn-lg' %>
+      <%= link_to 'Delete', family_member_path(@family_member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-lg' %>
+    </div>
+  </div>
 </div>
+
