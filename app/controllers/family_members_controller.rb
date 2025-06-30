@@ -30,7 +30,6 @@ class FamilyMembersController < ApplicationController
   end
 end
 
-
   # PATCH/PUT /family_members/1 or /family_members/1.json
   def update
     respond_to do |format|
