@@ -1,12 +1,31 @@
-<div class="container mt-5 text-center">
-  <h1 class="mb-4">Welcome to CareBridge</h1>
-  <p class="lead mb-4">Track your family's health records, appointments, and reminders in a simple, multilingual app.</p>
+<div class="container mt-5">
+  <h1 class="mb-4">Dashboard</h1>
 
-  <% if user_signed_in? %>
-    <%= link_to 'Go to Dashboard', root_path, class: 'btn btn-primary btn-lg' %>
-  <% else %>
-    <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-success btn-lg me-3' %>
-    <%= link_to 'Login', new_user_session_path, class: 'btn btn-outline-primary btn-lg' %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 shadow-sm">
+        <h4>Upcoming Appointments</h4>
+        <p>View all upcoming medical appointments.</p>
+        <%= link_to 'View Appointments', appointments_path, class: 'btn btn-outline-primary' %>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 shadow-sm">
+        <h4>Health Records</h4>
+        <p>Manage and upload your family’s health documents.</p>
+        <%= link_to 'View Health Records', health_records_path, class: 'btn btn-outline-primary' %>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 shadow-sm">
+        <h4>Reminders</h4>
+        <p>Track your upcoming medication and follow-up tasks.</p>
+        <%= link_to 'View Reminders', reminders_path, class: 'btn btn-outline-primary' %>
+      </div>
+    </div>
+  </div>
 </div>
+
 
