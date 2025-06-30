@@ -1,14 +1,23 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-5">
+  <h1 class="mb-4">Family Members</h1>
 
-<h1>Family members</h1>
+  <%= link_to 'Add New Family Member', new_family_member_path, class: 'btn btn-success mb-4' %>
 
-<div id="family_members">
-  <% @family_members.each do |family_member| %>
-    <%= render family_member %>
-    <p>
-      <%= link_to "Show this family member", family_member %>
-    </p>
-  <% end %>
+  <div class="row">
+    <% @family_members.each do |member| %>
+      <div class="col-md-4 mb-3">
+        <div class="card p-3 shadow-sm">
+          <h4><%= member.first_name %> <%= member.last_name %></h4>
+          <p><strong>Relationship:</strong> <%= member.relationship_to_user %></p>
+          <p><strong>Date of Birth:</strong> <%= member.date_of_birth %></p>
+          <div class="d-flex justify-content-between">
+            <%= link_to 'View', family_member_path(member), class: 'btn btn-outline-primary btn-sm' %>
+            <%= link_to 'Edit', edit_family_member_path(member), class: 'btn btn-outline-secondary btn-sm' %>
+            <%= link_to 'Delete', family_member_path(member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "New family member", new_family_member_path %>
