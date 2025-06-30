@@ -3,7 +3,7 @@ class FamilyMembersController < ApplicationController
 
   # GET /family_members or /family_members.json
   def index
-    @family_members = FamilyMember.all
+    @family_members = current_user.family_members
   end
 
   # GET /family_members/1 or /family_members/1.json
@@ -20,19 +20,16 @@ class FamilyMembersController < ApplicationController
   end
 
   # POST /family_members or /family_members.json
-  def create
-    @family_member = FamilyMember.new(family_member_params)
+ def create
+  @family_member = current_user.family_members.build(family_member_params)
 
-    respond_to do |format|
-      if @family_member.save
-        format.html { redirect_to @family_member, notice: "Family member was successfully created." }
-        format.json { render :show, status: :created, location: @family_member }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @family_member.errors, status: :unprocessable_entity }
-      end
-    end
+  if @family_member.save
+    redirect_to @family_member, notice: 'Family member was successfully created.'
+  else
+    render :new, status: :unprocessable_entity
   end
+end
+
 
   # PATCH/PUT /family_members/1 or /family_members/1.json
   def update
@@ -60,11 +57,11 @@ class FamilyMembersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_family_member
-      @family_member = FamilyMember.find(params[:id])
+      @family_member = current_user.family_members.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def family_member_params
-      params.require(:family_member).permit(:first_name, :last_name, :dob, :relationship_to_user, :user_id)
+      params.require(:family_member).permit(:first_name, :last_name, :dob, :relationship_to_user)
     end
 end
